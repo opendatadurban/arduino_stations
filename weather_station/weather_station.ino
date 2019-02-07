@@ -13,6 +13,10 @@
 #include <ESP8266WiFi.h>
 #include <ESP8266HTTPClient.h>
 
+// Define device identification and location
+const char* location = "14 Moore Grove, Berea, Durban, South Africa";
+const char* device_ID = "ad1";
+
 // Define Wifi requirements
 const char* ssid     = "ScwifityB_EXT";
 const char* password = "0741893105";
@@ -73,14 +77,16 @@ void loop() {
   //delay(1000 * 30);
   delay(1000 * 3);
 
-  Serial.println(data.pm25);
-  Serial.println(data.pm10);
+  //Serial.println(data.pm25);
+  //Serial.println(data.pm10);
   
   // Send all data at once #YOLO
   StaticJsonBuffer<200> jsonBuffer;
   JsonObject& root = jsonBuffer.createObject();
   root["pm_25"] = data.pm25;
   root["pm_10"] = data.pm10;
+  root["location"] = location;
+  root["device_ID"] = device_ID;
   String output;
   root.printTo(output);
   Serial.println(output);
