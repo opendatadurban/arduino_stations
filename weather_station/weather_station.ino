@@ -69,7 +69,7 @@ void loop() {
 
   // Make 60 measurements and return the mean values
   //sensor.readAverageData(data, 30); //NOTE: check what number means
-  sensor.readAverageData(data, 10);
+  sensor.readAverageData(data, 60);
   
   // Turn off the sensor
   sensor.turnOff();
@@ -118,8 +118,8 @@ void loop() {
  }
 
 
-
-
+  // wait for 4 minutes
+  delay(1000 * 4 * 60);
   // Turn sensor on
   sensor.turnOn();
   
