@@ -14,15 +14,13 @@
 #include <ESP8266HTTPClient.h>
 
 // Define device identification and location
-const char* location = "14 Moore Grove, Berea, Durban, South Africa";
+const char* location = "Edit Location Here";
 const char* device_ID = "ad1";
 
 // Define Wifi requirements
-const char* ssid     = "ScwifityB_EXT";
-const char* password = "0741893105";
 
-//const char* ssid     = "Open Data Durban";
-//const char* password = "HomeMadeBeer";
+const char* ssid     = "Open Data Durban";
+const char* password = "HomeMadeBeer";
 
 // Define sensor
 hackAIR sensor(SENSOR_SDS011);

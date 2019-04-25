@@ -5,14 +5,17 @@ Connect your board to your computer
 
 Step 1:
 Install Arduino IDE
+MAC: Install USB-UART driver:
+https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers
 
 Step 2:
 Open Arduino IDE
 Go to File > Preferences.
+(or Adruino > Preferences in MAC)
 Paste the URL http://arduino.esp8266.com/stable/package_esp8266com_index.json 
-into the Additional Board Manager URLs field.
+into the Additional Board Manager URLs field. Click OK.
 Go to Tools > Board > Board Manager and search for 'esp8266'. 
-Select the newest version, and click install. (As of February 7th 2017, the 
+Select the newest version (2.5.0 for MAC), and click install. (As of February 7th 2017, the 
 latest stable version is 2.3.0.)
 
 
@@ -36,6 +39,9 @@ Step 6:
 Go to Tools>Board 
 Select “NodeMCU 1.0 (ESP-12E Module)
 Select Upload Speed “115200”
+Select Port
+MAC: "debug port" on serial
+port: ...bluetooth...
 
 Step 7:
 Open serial monitor (magnifying glass icon, top right)
@@ -47,11 +53,13 @@ Once the upload is complete, disconnect your board.
 
 Step 9:
 Connect the Nova PM SDS011 sensor to the ESP8266 as follows:
+
 SD1011 – ESP8266
-TDX – D7
-RXD – D6
-GND – GND
-5V – Vin
+------------------
+TDX    – D7
+RXD    – D6
+GND    – GND
+5V     – Vin
 
 Step 10:
-Reconnect your board and it should run automagically
+Reconnect your board and it should run automatically
