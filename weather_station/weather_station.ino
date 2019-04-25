@@ -13,8 +13,7 @@
 #include <ESP8266WiFi.h>
 #include <ESP8266HTTPClient.h>
 
-// Define device identification and location
-const char* location = "Edit Location Here";
+// Define device identification 
 const char* device_ID = "ad1";
 
 // Define Wifi requirements
@@ -83,7 +82,6 @@ void loop() {
   JsonObject& root = jsonBuffer.createObject();
   root["pm_25"] = data.pm25;
   root["pm_10"] = data.pm10;
-  root["location"] = location;
   root["device_ID"] = device_ID;
   String output;
   root.printTo(output);
