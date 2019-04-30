@@ -5,6 +5,7 @@ Connect your board to your computer
 
 Step 1:
 Install Arduino IDE
+https://www.arduino.cc/en/main/software
 MAC: Install USB-UART driver:
 https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers
 
@@ -14,25 +15,27 @@ Go to File > Preferences.
 (or Adruino > Preferences in MAC)
 Paste the URL http://arduino.esp8266.com/stable/package_esp8266com_index.json 
 into the Additional Board Manager URLs field. Click OK.
-Go to Tools > Board > Board Manager and search for 'esp8266'. 
+Go to Tools > Board:"..." > Board Manager and search for 'esp8266'. 
 Select the newest version (2.5.0 for MAC), and click install. (As of February 7th 2017, the 
 latest stable version is 2.3.0.)
-
 
 Step 3:
 Download code and libraries from github
 https://github.com/opendatadurban/arduino_stations
 
 Step 4:
-Move the downloaded Arduino libraries into 
-Documents\Arduino\libraries\
-
+Move the downloaded Arduino libraries:
+	ArduinoJson-master
+	ESP8266HTTPClient
+	HackAir-Arduino
+into: 
+	Documents\Arduino\libraries\
 
 Step 5:
-Open code in Arduino IDE
-Edit wifi credentials
-Edit sensor name
-Edit sensor location
+Open file "weather_station" and double click on "weather_station.ino"
+Edit device_ID with the ID that has been assigned to you eg: Ad1
+Edit wifi credentials (ssid, password)
+***NOTE***: you'll need to change the wifi credentials to your own when you get home.
 Save code
 
 Step 6:
