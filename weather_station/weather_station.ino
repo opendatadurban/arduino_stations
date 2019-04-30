@@ -95,8 +95,8 @@ void loop() {
   if(WiFi.status()== WL_CONNECTED){   //Check WiFi connection status
  
    HTTPClient http;    //Declare object of class HTTPClient
- 
-   http.begin("http://citizen-sensors.herokuapp.com/data/ad1");      //Specify request destination
+   
+   http.begin("http://citizen-sensors.herokuapp.com/data");      //Specify request destination
    //http.addHeader("Content-Type", "text/plain");  //Specify content-type header
    http.addHeader("Content-Type", "application/json","Accept","application/json");
    int httpCode = http.POST(output);   //Send the request
