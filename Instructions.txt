@@ -4,6 +4,7 @@ Step 0:
 Connect your board to your computer
 
 Step 1:
+
 Install Arduino IDE
 https://www.arduino.cc/en/main/software
 MAC: Install USB-UART driver:
@@ -44,14 +45,14 @@ Select “NodeMCU 1.0 (ESP-12E Module)
 Select Upload Speed “115200”
 Select Port
 MAC: "debug port" on serial
-port: ...bluetooth...
+port: ...UART...
 
 Step 7:
 Open serial monitor (magnifying glass icon, top right)
 Select 115200 baud
 
 Step 8:
-Upload your code by clicking on the arrow icon (top left)
+Upload your code by clicking on the arrow (pointing right) icon (top left)
 Once the upload is complete, disconnect your board.
 
 Step 9:
@@ -59,8 +60,8 @@ Connect the Nova PM SDS011 sensor to the ESP8266 as follows:
 
 SD1011 – ESP8266
 ------------------
-TDX    – D7
-RXD    – D6
+TDX    – D7 (GPIO 13)
+RXD    – D6 (GPIO 12)
 GND    – GND
 5V     – Vin
 
