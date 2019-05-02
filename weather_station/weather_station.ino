@@ -14,12 +14,12 @@
 #include <ESP8266HTTPClient.h>
 
 // Define device identification 
-const char* device_ID = "ad1";
+const char* device_ID = "ad101";
 
 // Define Wifi requirements
 
 const char* ssid     = "Open Data Durban";
-const char* password = "HomeMadeBeer";
+const char* password = "CivicTech";
 
 // Define sensor
 hackAIR sensor(SENSOR_SDS011);
@@ -59,25 +59,25 @@ void setup() {
 
 void loop() {
   
+  Serial.println("This is unit ");
+  Serial.println(device_ID);
+  // Turn sensor on
+  //sensor.turnOn();
   digitalWrite(LED_BUILTIN, LOW);   // turn the LED on while sensor is on
   // Wait for sensor to settle
-  //delay(1000 * 30);
+  Serial.println("Waiting for sensor to settle... ");
   delay(1000 * 3);
-
+  Serial.println("Taking measurements... ");
   // Make 60 measurements and return the mean values
-  //sensor.readAverageData(data, 30); //NOTE: check what number means
   sensor.readAverageData(data, 60);
   
   // Turn off the sensor
-  sensor.turnOff();
+  //sensor.turnOff();
   digitalWrite(LED_BUILTIN, HIGH);    // turn the LED off while sensor is off
-  //delay(1000 * 30);
   delay(1000 * 3);
 
-  //Serial.println(data.pm25);
-  //Serial.println(data.pm10);
-  
-  // Send all data at once #YOLO
+  Serial.println("Posting data... ");
+
   StaticJsonBuffer<200> jsonBuffer;
   JsonObject& root = jsonBuffer.createObject();
   root["pm_25"] = data.pm25;
@@ -86,39 +86,26 @@ void loop() {
   String output;
   root.printTo(output);
   Serial.println(output);
-  //root.printTo(Serial);
-  //Serial.println();
-  //Serial.println("P2.5: " + String(data.pm25) + " P10: " + String(data.pm10));
 
   // Send data to web app
   
   if(WiFi.status()== WL_CONNECTED){   //Check WiFi connection status
  
    HTTPClient http;    //Declare object of class HTTPClient
-   
    http.begin("http://citizen-sensors.herokuapp.com/data");      //Specify request destination
-   //http.addHeader("Content-Type", "text/plain");  //Specify content-type header
    http.addHeader("Content-Type", "application/json","Accept","application/json");
    int httpCode = http.POST(output);   //Send the request
-   //String payload = http.getString();                  //Get the response payload
  
-   Serial.println(httpCode);   //Print HTTP return code
-   //Serial.println(payload);    //Print request response payload
- 
+   Serial.println(httpCode);   //Print HTTP return code 
    http.end();  //Close connection
  
  }else{
- 
     Serial.println("Error in WiFi connection");   
- 
  }
-
-
-  // wait for 4 minutes
+  Serial.println("Sleeping for 4 minutes..."); 
   delay(1000 * 4 * 60);
   // Turn sensor on
-  sensor.turnOn();
-  
+  //sensor.turnOn();  
 }
 
 
