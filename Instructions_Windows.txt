@@ -57,7 +57,7 @@ Connect the Nova PM SDS011 sensor to the ESP8266 board as follows:
 
 SDS011 – ESP8266
 ------------------
-TDX    – D7 (GPIO 13)
+TXD    – D7 (GPIO 13)
 RXD    – D6 (GPIO 12)
 GND    – GND
 5V     – Vin
