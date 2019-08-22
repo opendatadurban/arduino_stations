@@ -18,8 +18,14 @@ const char* device_ID = "ad101";
 
 // Define Wifi requirements
 
-const char* ssid     = "Open Data Durban";
-const char* password = "CivicTech";
+//const char* ssid_ODD     = "HUAWEI P10 lite";
+//const char* password_ODD = "1d1867be0513";
+
+const char* ssid     = "ScwifityB_EXT";
+const char* password = "0741893105";
+
+const char* ssid_ODD     = "Open Data Durban";
+const char* password_ODD = "CivicTech";
 
 // Define sensor
 hackAIR sensor(SENSOR_SDS011);
@@ -40,16 +46,39 @@ void setup() {
   // We start by connecting to a WiFi network
   Serial.println();
   Serial.println();
-  //Serial.print("Connecting to ");
+  Serial.println("Connecting to ");
   Serial.println(ssid);
   
   WiFi.begin(ssid, password);
-  
-  while (WiFi.status() != WL_CONNECTED) {
-    delay(500);
-    Serial.print(".");
+
+  for (int i = 1; i<= 200; i++){
+    if (WiFi.status() != WL_CONNECTED){
+      Serial.print("Attempt ");
+      Serial.println(i);
+      delay(500);
+    }
+    else {
+      break;
+    }
   }
 
+  if (WiFi.status() != WL_CONNECTED){
+    Serial.println("Failed to connect to ");
+    Serial.println(ssid);
+    Serial.println("Connecting to ODD");
+    WiFi.begin(ssid_ODD, password_ODD);
+    for (int i = 1; i<= 60; i++){
+      if (WiFi.status() != WL_CONNECTED){
+        Serial.print("Attempt ");
+        Serial.println(i);
+        delay(500);
+      }
+      else {
+        break;
+      }
+    }
+  }
+  
   Serial.println("");
   Serial.println("WiFi connected");  
   Serial.println("IP address: ");
@@ -95,14 +124,24 @@ void loop() {
    http.begin("http://citizen-sensors.herokuapp.com/data");      //Specify request destination
    http.addHeader("Content-Type", "application/json","Accept","application/json");
    int httpCode = http.POST(output);   //Send the request
- 
-   Serial.println(httpCode);   //Print HTTP return code 
+   String payload = http.getString();
+   //Serial.println(httpCode);   //Print HTTP return code
+   //Serial.println(payload);    //Print request response 
+   if(httpCode==200){
+    Serial.println("successfully sent data to website!");
+   }else{
+    Serial.println("failed to send data to website!");
+    Serial.println("HTTP return code:");
+    Serial.println(httpCode);
+    Serial.println("Request response:");
+    Serial.println(payload);
+   }
    http.end();  //Close connection
  
  }else{
     Serial.println("Error in WiFi connection");   
  }
-  Serial.println("Sleeping for 4 minutes..."); 
+  Serial.println("Sleeping for 4 minutes...");
   delay(1000 * 4 * 60);
   // Turn sensor on
   //sensor.turnOn();  

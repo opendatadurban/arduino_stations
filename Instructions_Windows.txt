@@ -55,7 +55,7 @@ Once the upload is complete, disconnect your ESP8266 board.
 Step 9:
 Connect the Nova PM SDS011 sensor to the ESP8266 board as follows:
 
-SD1011 – ESP8266
+SDS011 – ESP8266
 ------------------
 TDX    – D7 (GPIO 13)
 RXD    – D6 (GPIO 12)
