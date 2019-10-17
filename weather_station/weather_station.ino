@@ -14,15 +14,15 @@
 #include <ESP8266HTTPClient.h>
 
 // Define device identification 
-const char* device_ID = "ad101";
+const char* device_ID = "ad29";
 
 // Define Wifi requirements
 
 //const char* ssid_ODD     = "HUAWEI P10 lite";
 //const char* password_ODD = "1d1867be0513";
 
-const char* ssid     = "ScwifityB_EXT";
-const char* password = "0741893105";
+const char* ssid     = "NologoDevices";
+const char* password = "mangomango";
 
 const char* ssid_ODD     = "Open Data Durban";
 const char* password_ODD = "CivicTech";
@@ -107,13 +107,12 @@ void loop() {
 
   Serial.println("Posting data... ");
 
-  StaticJsonBuffer<200> jsonBuffer;
-  JsonObject& root = jsonBuffer.createObject();
+  StaticJsonDocument<200> root;
   root["pm_25"] = data.pm25;
   root["pm_10"] = data.pm10;
   root["device_ID"] = device_ID;
   String output;
-  root.printTo(output);
+  serializeJson(root, output);
   Serial.println(output);
 
   // Send data to web app
@@ -146,9 +145,3 @@ void loop() {
   // Turn sensor on
   //sensor.turnOn();  
 }
-
-
-
-
-
-
