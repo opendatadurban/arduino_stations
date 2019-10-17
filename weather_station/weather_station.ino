@@ -107,13 +107,12 @@ void loop() {
 
   Serial.println("Posting data... ");
 
-  StaticJsonBuffer<200> jsonBuffer;
-  JsonObject& root = jsonBuffer.createObject();
+  StaticJsonDocument<200> root;
   root["pm_25"] = data.pm25;
   root["pm_10"] = data.pm10;
   root["device_ID"] = device_ID;
   String output;
-  root.printTo(output);
+  serializeJson(root, output);
   Serial.println(output);
 
   // Send data to web app
