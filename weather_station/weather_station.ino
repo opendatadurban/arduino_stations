@@ -14,15 +14,15 @@
 #include <ESP8266HTTPClient.h>
 
 // Define device identification 
-const char* device_ID = "ad29";
+const char* device_ID = "ad101";
 
 // Define Wifi requirements
 
 //const char* ssid_ODD     = "HUAWEI P10 lite";
 //const char* password_ODD = "1d1867be0513";
 
-const char* ssid     = "NologoDevices";
-const char* password = "mangomango";
+const char* ssid     = "ScwifityB_EXT";
+const char* password = "0741893105";
 
 const char* ssid_ODD     = "Open Data Durban";
 const char* password_ODD = "CivicTech";
