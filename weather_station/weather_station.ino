@@ -97,8 +97,8 @@ void loop() {
   Serial.println("Waiting for sensor to settle... ");
   delay(1000 * 3);
   Serial.println("Taking measurements... ");
-  // Make 60 measurements and return the mean values
-  sensor.readAverageData(data, 60);
+  // Make 1200 measurements and return the mean values
+  sensor.readAverageData(data, 1200);
   
   // Turn off the sensor
   //sensor.turnOff();
@@ -141,14 +141,8 @@ void loop() {
  }else{
     Serial.println("Error in WiFi connection");   
  }
-  Serial.println("Sleeping for 4 minutes...");
-  delay(1000 * 4 * 60);
+  Serial.println("Sleeping for 15 minutes...");
+  delay(1000 * 15 * 60);
   // Turn sensor on
   //sensor.turnOn();  
 }
-
-
-
-
-
-
